@@ -1,25 +1,8 @@
-AI PPT Studio Cloud V10 Professional Templates
+AI PPT Studio Cloud V11 Real Template Import
 
-這是 GitHub Pages 專用扁平版，不需要 vendor 文件夾。
-請直接把本文件夾內所有文件上傳到 GitHub 倉庫最外層：
-
-index.html
-styles.css
-app.js
-pptxgen.bundle.js
-manifest.webmanifest
-sw.js
-icon.svg
-README_小白部署說明.txt
-
-重要：
-1. 不要上傳 zip。
-2. 不要再建立子文件夾。
-3. 上傳同名文件時，GitHub 會覆蓋舊版本。
-4. 提交後 Pages 會自動更新，通常等 1-3 分鐘。
-
-V10 變更：
-- 不再顯示模板牆首頁。
-- 先輸入內容，再生成大綱，再推薦模板。
-- 模板縮略圖改為真正封面視覺，不是灰色/顏色塊骨架。
-- PPTX 仍是前端本地生成，不依賴 OpenAI/Coze/n8n/CDN。
+重要：這一版不再用假模板牆充數。
+1. 用戶先輸入內容，再生成大綱，再推薦模板。
+2. 內置模板只標記為 Owned 自有示範，不假裝是授權白名單。
+3. 白名單模板需要在「模板導入」上傳真實封面圖、填寫授權/Credit 後才會出現在前台。
+4. 前台不顯示第三方網站入口。
+5. GitHub Pages 上傳時，請把本文件夾內所有文件拖進倉庫根目錄，不要上傳 zip。
