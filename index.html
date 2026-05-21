@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>AI PPT Studio Cloud V9</title>
+  <meta name="theme-color" content="#7C4DFF" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-logo">P</div>
+        <div>
+          <strong>AI PPT Studio Cloud</strong>
+          <span>V9 App-Grade Flow · 先創建，再推薦模板</span>
+        </div>
+      </div>
+      <div class="top-actions">
+        <button class="pill ghost" id="loginBtn">登入</button>
+        <button class="pill primary" id="upgradeBtn">升級會員</button>
+      </div>
+    </header>
+
+    <main>
+      <section id="viewCreate" class="view active">
+        <div class="hero-panel">
+          <div class="hero-top">
+            <div class="hero-badge">AI ONE-CLICK PPT GENERATION</div>
+            <h1>先輸入內容，<br/>再智能推薦專業模板</h1>
+            <p>不先展示模板牆。系統根據主題、場景、行業和用途推薦不同風格模板，前台只顯示我們自己的模板雲庫。</p>
+          </div>
+
+          <div class="mode-tabs" role="tablist">
+            <button class="mode active" data-mode="ai"><span class="mode-icon">✨</span><strong>使用 AI 創建</strong></button>
+            <button class="mode" data-mode="doc"><span class="mode-icon">📄</span><strong>導入文檔</strong></button>
+            <button class="mode" data-mode="web"><span class="mode-icon">🔗</span><strong>Google Drive 或 Web</strong></button>
+          </div>
+
+          <div class="create-card">
+            <div class="create-head">
+              <h2 id="inputTitle">輸入簡報需求</h2>
+              <span id="engineStatus" class="engine good">PPTX 引擎本地載入中…</span>
+            </div>
+
+            <label class="field-label">簡報主題 / Topic</label>
+            <textarea id="topicInput" maxlength="20000" placeholder="例如：香港城市流浪貓科學福利及生命教育園區 / AI 自動化短視頻生成工作流 / 診所樣本收取管理系統"></textarea>
+            <div class="counter"><span id="charCount">0</span> / 20,000 字</div>
+
+            <div class="grid-form">
+              <label>使用場景
+                <select id="sceneInput">
+                  <option value="auto">智能判斷</option>
+                  <option value="政府匯報">政府匯報</option>
+                  <option value="商業計劃">商業計劃</option>
+                  <option value="醫療健康">醫療健康</option>
+                  <option value="教育課件">教育課件</option>
+                  <option value="公益項目">公益項目</option>
+                  <option value="AI科技">AI 科技</option>
+                  <option value="產品發布">產品發布</option>
+                  <option value="數據報告">數據報告</option>
+                </select>
+              </label>
+              <label>頁數
+                <select id="pageInput">
+                  <option value="8">8 頁</option>
+                  <option value="10" selected>10 頁</option>
+                  <option value="12">12 頁</option>
+                </select>
+              </label>
+              <label>語言
+                <select id="langInput">
+                  <option value="繁體中文" selected>繁體中文</option>
+                  <option value="简体中文">简体中文</option>
+                  <option value="English">English</option>
+                </select>
+              </label>
+              <label>內容深度
+                <select id="depthInput">
+                  <option value="專業精簡" selected>專業精簡</option>
+                  <option value="詳細完整">詳細完整</option>
+                  <option value="投資人版">投資人版</option>
+                  <option value="政府匯報版">政府匯報版</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="cta-row">
+              <button id="generateOutlineBtn" class="big-cta">生成大綱並推薦模板</button>
+              <button id="sampleBtn" class="secondary-cta">填入示例</button>
+            </div>
+          </div>
+        </div>
+
+        <section class="locked-section" id="lockedTemplateHint">
+          <h3>模板雲庫暫未展示</h3>
+          <p>請先輸入主題並生成大綱。這樣使用者看到的是「基於需求推薦」的模板，而不是一堆無關模板牆。</p>
+          <div class="mini-flow"><span>輸入需求</span><b>→</b><span>生成大綱</span><b>→</b><span>推薦模板</span><b>→</b><span>預覽 / 下載</span></div>
+        </section>
+      </section>
+
+      <section id="viewTemplates" class="view">
+        <div id="templateLocked" class="empty-state">
+          <div class="empty-icon">🔒</div>
+          <h2>請先生成大綱</h2>
+          <p>專業 PPT App 不會一進來就展示模板牆。先輸入需求，系統才會推薦合適模板。</p>
+          <button class="pill primary" data-jump="create">去創建</button>
+        </div>
+
+        <div id="templateReady" class="template-page hidden">
+          <div class="section-card outline-card">
+            <div>
+              <span class="eyebrow">AI OUTLINE</span>
+              <h2>已生成大綱，請選擇模板</h2>
+              <p id="outlineSummary">系統將根據主題推薦模板。</p>
+            </div>
+            <div class="outline-actions">
+              <button id="backEditBtn" class="pill ghost">修改內容</button>
+              <button id="regenBtn" class="pill primary">重新推薦</button>
+            </div>
+          </div>
+
+          <div class="outline-preview" id="outlinePreview"></div>
+
+          <div class="template-toolbar">
+            <div>
+              <span class="eyebrow">TEMPLATE CLOUD</span>
+              <h2>選擇模板</h2>
+              <p>只顯示我們自己的模板視覺；底層參考、授權、外部來源不展示給用戶。</p>
+            </div>
+            <div class="filters">
+              <select id="styleFilter">
+                <option value="all">全部樣式</option>
+                <option value="minimal">極簡</option>
+                <option value="business">商務</option>
+                <option value="tech">科技感</option>
+                <option value="warm">溫暖</option>
+                <option value="medical">醫療</option>
+                <option value="premium">高端</option>
+              </select>
+              <select id="colorFilter">
+                <option value="all">全部顏色</option>
+                <option value="blue">藍色</option>
+                <option value="gold">黑金</option>
+                <option value="green">綠色</option>
+                <option value="purple">紫色</option>
+                <option value="warm">暖色</option>
+              </select>
+            </div>
+          </div>
+
+          <div id="templateGrid" class="template-grid"></div>
+        </div>
+      </section>
+
+      <section id="viewPreview" class="view">
+        <div class="section-card preview-top">
+          <div>
+            <span class="eyebrow">LIVE PREVIEW</span>
+            <h2>在線預覽</h2>
+            <p>確認封面、目錄、內容結構後，再登入或升級下載 PPTX。</p>
+          </div>
+          <div class="preview-actions">
+            <button id="changeTplBtn" class="pill ghost">換模板</button>
+            <button id="downloadBtn" class="pill primary">下載 PPTX</button>
+          </div>
+        </div>
+        <div id="deckPreview" class="deck-preview"></div>
+      </section>
+
+      <section id="viewPro" class="view">
+        <div class="pricing-hero">
+          <div class="diamond">◆</div>
+          <h2>升級會員，享受更多特權和更佳體驗</h2>
+          <p>這裏目前是產品前台模擬頁，後續可接 Stripe / PayPal / 支付寶 / 微信支付。</p>
+        </div>
+        <div class="plans">
+          <div class="plan selected"><span>50% OFF</span><h3>Plus Yearly Plan</h3><strong>HK$ 469.00</strong><p>約 HK$39.08 / 月</p></div>
+          <div class="plan"><h3>Plus Monthly Plan</h3><strong>HK$ 70.90</strong><p>按月計費</p></div>
+          <div class="plan"><span>40% OFF</span><h3>Plus Lifetime Plan</h3><strong>HK$ 839.00</strong><p>終身有效</p></div>
+        </div>
+        <button class="payment-btn">立即付款 HK$ 469.00</button>
+      </section>
+
+      <section id="viewTools" class="view">
+        <div class="tools-head"><h2>工具</h2><p>正式版可逐步接後台任務，目前先做入口 UI。</p></div>
+        <div class="tool-grid">
+          <button>PDF 轉 Word <small>VIP</small></button>
+          <button>PDF 轉 PPT <small>VIP</small></button>
+          <button>PNG 轉 PDF <small>VIP</small></button>
+          <button>Word 轉 PPT <small>即將推出</small></button>
+          <button>圖片轉大綱 <small>即將推出</small></button>
+          <button>PPT 壓縮 <small>即將推出</small></button>
+        </div>
+      </section>
+
+      <section id="viewAccount" class="view">
+        <div class="account-card">
+          <div class="avatar">P</div>
+          <h2 id="accountName">未登入</h2>
+          <p>登入後可保存項目、下載 PPTX、使用高級模板。</p>
+          <button class="pill primary" id="loginBtn2">模擬登入</button>
+        </div>
+      </section>
+    </main>
+
+    <nav class="bottom-nav">
+      <button class="nav-item active" data-view="Create"><span>✨</span>創建</button>
+      <button class="nav-item" data-view="Templates"><span>▣</span>模板</button>
+      <button class="nav-item" data-view="Pro"><span>◆</span>高級版</button>
+      <button class="nav-item" data-view="Tools"><span>✚</span>工具</button>
+      <button class="nav-item" data-view="Account"><span>☺</span>帳戶</button>
+    </nav>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+  <div id="memberModal" class="modal hidden">
+    <div class="modal-box">
+      <button class="close" id="closeModal">×</button>
+      <div class="modal-icon">◆</div>
+      <h2>下載 PPTX 需要登入 / 會員</h2>
+      <p>目前是可交互前台原型：點擊「模擬登入」後即可下載。正式版再接真實登入和付款。</p>
+      <button id="modalLogin" class="big-cta">模擬登入並下載</button>
+    </div>
+  </div>
+
+  <script src="pptxgen.bundle.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
