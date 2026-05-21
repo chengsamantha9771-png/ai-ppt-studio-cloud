@@ -1,19 +1,25 @@
-AI PPT Studio Cloud V9 App-Grade Flow
+AI PPT Studio Cloud V10 Professional Templates
 
-這版修正重點：
-1. 首頁不再直接展示模板牆。
-2. 用戶必須先輸入主題 / 文檔內容，再生成大綱。
-3. 生成大綱後才推薦模板。
-4. 模板縮略圖不再是同一堆顏色骨架，而是多種 App 級封面視覺。
-5. 前台不展示第三方網站入口；外部模板只能作為後台靈感 / 授權管理 / 用戶自帶模板來源。
-6. 下載 PPTX 需要模擬登入，正式版後續可接真實登入和付款。
+這是 GitHub Pages 專用扁平版，不需要 vendor 文件夾。
+請直接把本文件夾內所有文件上傳到 GitHub 倉庫最外層：
 
-Netlify 上傳：
-1. 解壓整個 zip。
-2. 確認文件夾內有 index.html、styles.css、app.js、vendor/pptxgen.bundle.js。
-3. 把整個解壓後文件夾拖到 Netlify Production deploys 上傳框。
-4. 發布後打開網站，按 Ctrl+R 或瀏覽器刷新。
+index.html
+styles.css
+app.js
+pptxgen.bundle.js
+manifest.webmanifest
+sw.js
+icon.svg
+README_小白部署說明.txt
 
-成功標誌：
-頁面頂部顯示：V9 App-Grade Flow · 先創建，再推薦模板
-首頁不是模板牆，而是 AI 創建 / 導入文檔 / Google Drive 或 Web。
+重要：
+1. 不要上傳 zip。
+2. 不要再建立子文件夾。
+3. 上傳同名文件時，GitHub 會覆蓋舊版本。
+4. 提交後 Pages 會自動更新，通常等 1-3 分鐘。
+
+V10 變更：
+- 不再顯示模板牆首頁。
+- 先輸入內容，再生成大綱，再推薦模板。
+- 模板縮略圖改為真正封面視覺，不是灰色/顏色塊骨架。
+- PPTX 仍是前端本地生成，不依賴 OpenAI/Coze/n8n/CDN。

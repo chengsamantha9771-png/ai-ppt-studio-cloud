@@ -1,9 +1,9 @@
 {
-  "name":"AI PPT Studio Cloud V9",
-  "short_name":"AI PPT",
-  "start_url":"./index.html",
-  "display":"standalone",
-  "background_color":"#f5f6fb",
-  "theme_color":"#7C4DFF",
-  "icons":[{"src":"icon.svg","sizes":"any","type":"image/svg+xml"}]
+  "name": "AI PPT Studio Cloud V10",
+  "short_name": "AI PPT V10",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f8f7ff",
+  "theme_color": "#101828",
+  "icons": [{"src":"icon.svg","sizes":"any","type":"image/svg+xml"}]
 }
