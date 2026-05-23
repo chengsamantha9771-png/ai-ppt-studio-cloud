@@ -1,22 +1,20 @@
 const $ = (s)=>document.querySelector(s);
 const $$ = (s)=>Array.from(document.querySelectorAll(s));
-const state = { outline: [], selectedTemplate:null, isMember:false, lastCoverData:null };
+const state = { outline: [], selectedTemplate:null, isMember:false, lastCoverData:null, lastTemplateFile:null };
 
-const builtInTemplates = [
-  {id:'owned-medical', name:'Healthcare Training Pro', category:'medical', source:'owned', credit:'自有設計', colors:['#2563eb','#facc15','#eff6ff'], visual:'medical', desc:'醫療培訓、診所項目、健康趨勢。'},
-  {id:'owned-career', name:'Career Steps 3D', category:'business', source:'owned', credit:'自有設計', colors:['#335c81','#f7c978','#eaf3fb'], visual:'career', desc:'商務培訓、職業發展、方案路線。'},
-  {id:'owned-blackgold', name:'Investor Black Gold', category:'finance', source:'owned', credit:'自有設計', colors:['#050505','#d4af37','#111827'], visual:'blackgold', desc:'投資路演、商業計劃、高端匯報。'},
-  {id:'owned-public', name:'Public Policy Whitepaper', category:'public', source:'owned', credit:'自有設計', colors:['#0b1d35','#d6a43a','#f7f1e6'], visual:'public', desc:'政府簡報、白皮書、公共價值提案。'},
-  {id:'owned-tech', name:'Quantum AI Gradient', category:'tech', source:'owned', credit:'自有設計', colors:['#6d28d9','#38bdf8','#faf5ff'], visual:'quantum', desc:'AI 科技、產品發佈、創新方案。'},
-  {id:'owned-cat', name:'Warm Cat Welfare', category:'public', source:'owned', credit:'自有設計', colors:['#f97316','#7c2d12','#fff7ed'], visual:'cat', desc:'公益、生命教育、社區項目。'}
-];
+
+const builtInTemplates = [];
+
 
 function escapeXml(s=''){return String(s).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&apos;','"':'&quot;'}[c]));}
 function short(s,n=44){s=String(s||''); return s.length>n?s.slice(0,n-1)+'…':s;}
 function slug(s){return String(s||'ppt').replace(/[\\/:*?"<>|\s]+/g,'-').slice(0,42)||'ppt';}
 function getImportedTemplates(){try{return JSON.parse(localStorage.getItem('realTemplateCloud')||'[]')}catch{return []}}
 function setImportedTemplates(arr){localStorage.setItem('realTemplateCloud',JSON.stringify(arr));}
-function allTemplates(){return [...getImportedTemplates(), ...builtInTemplates];}
+function isRealTemplate(t){
+ return Boolean(t && t.coverData && t.templateData && (t.templateExt==='pptx' || t.templateExt==='potx'));
+}
+function allTemplates(){return [...getImportedTemplates(), ...builtInTemplates].filter(isRealTemplate);}
 
 function svgData(w,h,body){return 'data:image/svg+xml;charset=UTF-8,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}"><defs><filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="14" stdDeviation="14" flood-color="#0f172a" flood-opacity=".18"/></filter><linearGradient id="neon" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#a855f7"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs>${body}</svg>`)}
 function templateCover(t){
@@ -43,12 +41,13 @@ function renderTemplates(){ const filter=$('#styleFilter').value; let data=allTe
  $$('.apply,.preview,.tpl-card').forEach(el=>el.onclick=(e)=>{ const id=e.currentTarget.dataset.id || e.target.dataset.id; if(!id) return; selectTemplate(id); }); }
 function labelCategory(c){return {medical:'醫療',business:'商務',public:'政府/公益',tech:'科技',finance:'金融',education:'教育'}[c]||c}
 function selectTemplate(id){ state.selectedTemplate=allTemplates().find(t=>t.id===id); renderPreview(); showPanel('previewPanel'); }
-function renderPreview(){ const tpl=state.selectedTemplate||allTemplates()[0]; const cover=templateCover(tpl); $('#previewStrip').innerHTML=state.outline.map((it,i)=>`<div class="slide-thumb"><img src="${i===0?cover:slideThumb(tpl,it,i)}"/><div class="slide-caption"><b>${i+1}. ${it.title}</b><span>${short(it.subtitle,70)}</span></div></div>`).join(''); }
+function renderPreview(){ const tpl=state.selectedTemplate||allTemplates()[0]; if(!tpl){ $('#previewStrip').innerHTML=''; return; } const cover=templateCover(tpl); $('#previewStrip').innerHTML=state.outline.map((it,i)=>`<div class="slide-thumb"><img src="${i===0?cover:slideThumb(tpl,it,i)}"/><div class="slide-caption"><b>${i+1}. ${it.title}</b><span>${short(it.subtitle,70)}</span></div></div>`).join(''); }
 function slideThumb(tpl,it,i){ const [a,b,c]=tpl.colors||['#071426','#0f4cbd','#fff']; const dark=['blackgold'].includes(tpl.visual); const bg=dark?'#080808':(tpl.category==='public'?'#f7f1e6':'#ffffff'); const ink=dark?'#fff':'#071426'; const body=`<rect width="720" height="405" fill="${bg}"/><rect width="720" height="44" fill="${dark?b:a}" opacity="${dark?'.9':'1'}"/><circle cx="620" cy="105" r="90" fill="${b}" opacity=".22"/><text x="58" y="130" font-size="38" font-weight="900" fill="${ink}">${escapeXml(short(it.title,22))}</text><rect x="58" y="180" width="260" height="70" rx="18" fill="${dark?'#1f2937':'#f8fafc'}"/><rect x="360" y="180" width="260" height="70" rx="18" fill="${dark?'#1f2937':'#f8fafc'}"/><rect x="88" y="208" width="150" height="10" rx="5" fill="${dark?'#6b7280':'#cbd5e1'}"/><rect x="88" y="232" width="105" height="8" rx="4" fill="${dark?'#4b5563':'#dbe3ee'}"/><rect x="390" y="208" width="150" height="10" rx="5" fill="${dark?'#6b7280':'#cbd5e1'}"/><rect x="390" y="232" width="105" height="8" rx="4" fill="${dark?'#4b5563':'#dbe3ee'}"/><rect x="58" y="305" width="520" height="12" rx="6" fill="${b}" opacity=".35"/><text x="58" y="360" font-size="20" fill="${dark?'#d1d5db':'#475467'}">${escapeXml(short(it.subtitle,55))}</text>`; return svgData(720,405,body); }
 
 function showPanel(id){ $$('.panel').forEach(p=>p.classList.add('hidden')); $('#'+id).classList.remove('hidden'); $$('.nav-item').forEach(b=>b.classList.toggle('active', b.dataset.panel===id)); window.scrollTo({top:0,behavior:'smooth'}); if(id==='templatePanel') renderTemplates(); }
 
-function saveImported(){ const name=$('#tplName').value.trim(); const credit=$('#tplCredit').value.trim(); if(!name) return alert('請先填模板名稱'); if(!state.lastCoverData) return alert('請先上傳真實模板封面圖'); const arr=getImportedTemplates(); arr.unshift({id:'imp-'+Date.now(),name,category:$('#tplCategory').value,source:$('#tplSource').value,credit,coverData:state.lastCoverData,colors:['#071426','#0f4cbd','#ffffff'],visual:'imported',desc: credit || '已導入真實模板封面'}); setImportedTemplates(arr); state.lastCoverData=null; $('#importPreview').innerHTML=''; $('#tplName').value=''; $('#tplCredit').value=''; renderTemplates(); alert('已保存到本地模板雲庫'); closeAdmin(); }
+function saveImported(){ const name=$('#tplName').value.trim(); const credit=$('#tplCredit').value.trim(); if(!name) return alert('請先填模板名稱'); if(!state.lastCoverData) return alert('請先上傳真實模板封面圖');
+ if(!state.lastTemplateFile) return alert('請先上傳真實模板檔（PPTX/POTX）'); const arr=getImportedTemplates(); arr.unshift({id:'imp-'+Date.now(),name,category:$('#tplCategory').value,source:$('#tplSource').value,credit,coverData:state.lastCoverData,templateData:state.lastTemplateFile.data,templateExt:state.lastTemplateFile.ext,templateMime:state.lastTemplateFile.mime,colors:['#071426','#0f4cbd','#ffffff'],visual:'imported',desc: credit || '已導入真實模板資產'}); setImportedTemplates(arr); state.lastCoverData=null; state.lastTemplateFile=null; $('#importPreview').innerHTML=''; $('#templateFile').value=''; $('#tplName').value=''; $('#tplCredit').value=''; renderTemplates(); alert('已保存到本地模板雲庫'); closeAdmin(); }
 function openAdmin(){ $('#adminModal').classList.remove('hidden'); }
 function closeAdmin(){ $('#adminModal').classList.add('hidden'); }
 
@@ -59,6 +58,7 @@ $('#charCount').oninput=null; $('#topicInput').addEventListener('input',e=>$('#c
 $('#generateBtn').onclick=buildOutline; $('#editOutlineBtn').onclick=()=>showPanel('createPanel'); $('#goTemplateBtn').onclick=()=>showPanel('templatePanel'); $('#backOutlineBtn').onclick=()=>showPanel('outlinePanel'); $('#changeTemplateBtn').onclick=()=>showPanel('templatePanel'); $('#downloadBtn').onclick=downloadPptx; $('#styleFilter').onchange=renderTemplates;
 $('#adminBtn').onclick=openAdmin; $('#openImporterBtn').onclick=openAdmin; $('#closeAdmin').onclick=closeAdmin; $('#saveTemplateBtn').onclick=saveImported; $('#clearTemplatesBtn').onclick=()=>{ if(confirm('確定清空本地導入模板？')){localStorage.removeItem('realTemplateCloud'); renderTemplates();} };
 $('#coverFile').onchange=(e)=>{ const f=e.target.files[0]; if(!f) return; const r=new FileReader(); r.onload=()=>{state.lastCoverData=r.result; $('#importPreview').innerHTML=`<img src="${r.result}" alt="cover preview"/>`;}; r.readAsDataURL(f); };
+$('#templateFile').onchange=(e)=>{ const f=e.target.files[0]; if(!f) return; const ext=((f.name||'').split('.').pop()||'').toLowerCase(); if(!['pptx','potx'].includes(ext)){ e.target.value=''; state.lastTemplateFile=null; return alert('只支持上傳 PPTX 或 POTX 模板檔'); } const r=new FileReader(); r.onload=()=>{state.lastTemplateFile={data:r.result,ext,mime:f.type||''};}; r.readAsDataURL(f); };
 $('#loginBtn').onclick=()=>alert('已模擬登入。正式版後續接 Supabase / Firebase / 自建後台。'); $('#memberBtn').onclick=()=>$('#memberModal').classList.remove('hidden'); $('#closeMember').onclick=()=>$('#memberModal').classList.add('hidden'); $('#fakePayBtn').onclick=()=>{state.isMember=true; $('#memberModal').classList.add('hidden'); alert('已模擬開通會員，現在可以下載 PPTX。')};
 $$('.mode').forEach(b=>b.onclick=()=>{$$('.mode').forEach(x=>x.classList.remove('active')); b.classList.add('active')});
 $$('.nav-item').forEach(b=>b.onclick=()=>{ const p=b.dataset.panel; if(p==='member') return $('#memberModal').classList.remove('hidden'); if(p==='admin') return openAdmin(); if(p==='templatePanel' && state.outline.length===0) return alert('請先輸入內容並生成大綱，再選擇模板。'); if(p==='account') return alert('帳戶頁後續接真實登入。'); showPanel(p); });
