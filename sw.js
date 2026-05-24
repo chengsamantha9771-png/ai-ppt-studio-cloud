@@ -1,13 +1,39 @@
-const CACHE='ai-ppt-studio-cloud-v13';
-const NETWORK_FIRST=['/','/index.html','/app.js','/styles.css','/sw.js','/templates/external_templates.json','/templates/registry.json'];
-self.addEventListener('install',e=>{self.skipWaiting();});
-self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))));self.clients.claim();});
-self.addEventListener('fetch',e=>{
- const u=new URL(e.request.url);
- if(u.origin!==self.location.origin) return;
- if(NETWORK_FIRST.includes(u.pathname)){
-  e.respondWith(fetch(e.request).then(r=>{const c=r.clone();caches.open(CACHE).then(x=>x.put(e.request,c));return r;}).catch(()=>caches.match(e.request)));
+const CACHE='ai-ppt-studio-cloud-v14-20260524';
+const CORE_PATHS=['/','/index.html','/app.js','/styles.css','/sw.js','/templates/external_templates.json','/templates/registry.json'];
+
+self.addEventListener('install',event=>{
+ self.skipWaiting();
+});
+
+self.addEventListener('activate',event=>{
+ event.waitUntil(
+  caches.keys()
+   .then(keys=>Promise.all(keys.filter(key=>key!==CACHE).map(key=>caches.delete(key))))
+   .then(()=>self.clients.claim())
+ );
+});
+
+self.addEventListener('fetch',event=>{
+ const url=new URL(event.request.url);
+ if(url.origin!==self.location.origin)return;
+ const isCore=CORE_PATHS.includes(url.pathname);
+ if(isCore){
+  event.respondWith(
+   fetch(event.request,{cache:'no-store'})
+    .then(response=>{
+     const copy=response.clone();
+     caches.open(CACHE).then(cache=>cache.put(event.request,copy));
+     return response;
+    })
+    .catch(()=>caches.match(event.request))
+  );
   return;
  }
- e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request).then(res=>{const c=res.clone();caches.open(CACHE).then(x=>x.put(e.request,c));return res;})));
+ event.respondWith(
+  caches.match(event.request).then(cached=>cached||fetch(event.request).then(response=>{
+   const copy=response.clone();
+   caches.open(CACHE).then(cache=>cache.put(event.request,copy));
+   return response;
+  }))
+ );
 });
