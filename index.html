@@ -76,7 +76,7 @@
         </div>
         <div class="empty-template hidden" id="emptyTemplates">
           <h3>還沒有導入真實白名單模板</h3>
-          <p>這裡不再用假色塊充數。請到「模板導入」上傳真實模板封面圖，填寫授權類型和 Credit，模板才會出現在前台。</p>
+          <p>這裡不再用假色塊充數。請到「模板導入」同時上傳真實模板檔（PPTX/POTX）與真實封面圖，填寫授權類型和 Credit，模板才會出現在前台。</p>
           <button class="primary-btn" id="openImporterBtn">現在導入模板</button>
         </div>
         <div class="template-grid" id="templateGrid"></div>
@@ -104,14 +104,15 @@
     <div class="modal-box importer glass">
       <button class="modal-close" id="closeAdmin">×</button>
       <p class="eyebrow">ADMIN · REAL TEMPLATE IMPORT</p>
-      <h2>導入真實模板封面與授權記錄</h2>
-      <p class="modal-note">這是給你/管理員用的，不是給終端用戶看的。請只導入自有模板、已授權模板，或允許商用與改編且保留署名的模板。</p>
+      <h2>導入真實模板資產與授權記錄</h2>
+      <p class="modal-note">這是給你/管理員用的，不是給終端用戶看的。請只導入自有模板、已授權模板，或允許商用與改編且保留署名的模板。未同時提供真實 PPTX/POTX 與封面圖的模板不會展示。</p>
       <div class="import-grid">
         <label>模板名稱<input id="tplName" placeholder="例：醫療培訓專業版" /></label>
         <label>分類<select id="tplCategory"><option value="medical">醫療</option><option value="business">商務</option><option value="public">政府/公益</option><option value="tech">科技</option><option value="finance">金融</option><option value="education">教育</option></select></label>
         <label>模板來源類型<select id="tplSource"><option value="owned">Owned 自有模板</option><option value="licensed">Licensed 授權白名單</option><option value="user">User Upload 用戶自帶</option></select></label>
         <label>授權 / Credit<input id="tplCredit" placeholder="例：CC BY 4.0 / 自有設計 / 已授權" /></label>
       </div>
+      <label class="file-drop">上傳真實模板檔 PPTX/POTX<input type="file" id="templateFile" accept=".pptx,.potx,application/vnd.openxmlformats-officedocument.presentationml.presentation,application/vnd.openxmlformats-officedocument.presentationml.template" /></label>
       <label class="file-drop">上傳真實模板封面圖 PNG/JPG/SVG<input type="file" id="coverFile" accept="image/*" /></label>
       <div class="import-actions"><button class="ghost-btn" id="clearTemplatesBtn">清空本地導入模板</button><button class="primary-btn" id="saveTemplateBtn">保存到本地模板雲庫</button></div>
       <div id="importPreview" class="import-preview"></div>
