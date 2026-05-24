@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#0b1220" />
-  <title>AI PPT Studio Cloud · V11 Real Template</title>
+  <title>AI PPT Studio Cloud · V13 External Template Marketplace</title>
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="icon" href="icon.svg" />
   <link rel="stylesheet" href="styles.css" />
@@ -12,124 +12,24 @@
 <body>
   <div class="app-shell">
     <header class="topbar glass">
-      <div class="brand">
-        <div class="brand-mark">P</div>
-        <div>
-          <div class="brand-title">AI PPT Studio Cloud</div>
-          <div class="brand-sub">V11 Real Template Import · 先內容，再導入真模板</div>
-        </div>
-      </div>
-      <div class="top-actions">
-        <button class="ghost-btn" id="adminBtn">模板導入</button>
-        <button class="ghost-btn" id="loginBtn">登入</button>
-        <button class="primary-btn small" id="memberBtn">升級會員</button>
-      </div>
+      <div class="brand"><div class="brand-mark">P</div><div><div class="brand-title">AI PPT Studio Cloud</div><div class="brand-sub">V13 · 外部模板广场 / 真模板导入 / AI大纲 / PPTX工作流</div></div></div>
+      <div class="top-actions"><button class="ghost-btn" id="adminBtn">模板导入</button><button class="ghost-btn" id="loginBtn">登入</button><button class="primary-btn small" id="memberBtn">升级会员</button></div>
     </header>
 
     <main class="main">
       <section class="hero-card glass panel" id="createPanel">
-        <div class="hero-grid">
-          <div class="hero-copy">
-            <p class="eyebrow">AI ONE-CLICK PPT GENERATION</p>
-            <h1>先輸入內容，<br/>再套用真實模板</h1>
-            <p class="lead">這一版不再用灰色骨架和假色塊。模板庫分成「自有模板」與「授權白名單模板」。白名單模板需要先導入真實封面圖與授權記錄，前台只展示我們自己的模板雲庫。</p>
-          </div>
-          <div class="workflow-card">
-            <div class="step active"><b>1</b><span>輸入主題 / 貼文檔</span></div>
-            <div class="step"><b>2</b><span>生成大綱</span></div>
-            <div class="step"><b>3</b><span>推薦真模板</span></div>
-            <div class="step"><b>4</b><span>預覽 / 下載 PPTX</span></div>
-          </div>
-        </div>
-
-        <div class="mode-tabs">
-          <button class="mode active" data-mode="prompt"><span>✨</span><strong>使用 AI 創建</strong><small>輸入主題，生成大綱</small></button>
-          <button class="mode" data-mode="doc"><span>📄</span><strong>導入文檔</strong><small>貼 Word/PDF/TXT 文本</small></button>
-          <button class="mode" data-mode="web"><span>🔗</span><strong>Google Drive 或 Web</strong><small>後續接雲端解析</small></button>
-        </div>
-
-        <div class="input-studio">
-          <div class="input-row"><label>簡報主題 / 長文內容</label><span id="charCount">0 字</span></div>
-          <textarea id="topicInput" placeholder="例如：香港城市流浪貓科學福利及生命教育園區\n也可以貼 2,000–20,000 字長文，系統會先整理成大綱。"></textarea>
-          <div class="settings-row">
-            <select id="sceneSelect"><option value="public">公益項目</option><option value="gov">政府匯報</option><option value="biz">商業計劃</option><option value="medical">醫療健康</option><option value="finance">金融報告</option><option value="tech">AI 科技</option><option value="education">教育課件</option><option value="product">產品發布</option><option value="data">數據分析</option></select>
-            <select id="pageCount"><option value="8">8 頁</option><option value="10" selected>10 頁</option><option value="12">12 頁</option><option value="15">15 頁</option></select>
-            <select id="languageSelect"><option value="繁體中文">繁體中文</option><option value="简体中文">简体中文</option><option value="English">English</option></select>
-          </div>
-          <button class="cta" id="generateBtn">生成大綱並推薦模板</button>
-        </div>
+        <div class="hero-grid"><div class="hero-copy"><p class="eyebrow">AI ONE-CLICK PPT GENERATION</p><h1>先输入内容，<br/>再进入真模板工作流</h1><p class="lead">先生成专业汇报大纲，再进入外部模板广场或我的真模板库。</p></div><div class="workflow-card"><div class="step active"><b>1</b><span>输入主题 / 贴文档</span></div><div class="step"><b>2</b><span>生成智能大纲</span></div><div class="step"><b>3</b><span>进入模板广场</span></div><div class="step"><b>4</b><span>导入 / 下载真实 PPTX</span></div></div></div>
+        <div class="mode-tabs"><button class="mode active" data-mode="prompt"><span>✨</span><strong>使用 AI 创建</strong><small>输入主题，生成大纲</small></button><button class="mode" data-mode="doc"><span>📄</span><strong>导入文档</strong><small>贴 Word/PDF/TXT 文本</small></button><button class="mode" data-mode="web"><span>🔗</span><strong>Google Drive 或 Web</strong><small>后续接云端解析</small></button></div>
+        <div class="input-studio"><div class="input-row"><label>简报主题 / 长文内容</label><span id="charCount">0 字</span></div><textarea id="topicInput"></textarea><div class="settings-row"><select id="sceneSelect"><option value="public">公益项目</option><option value="gov">政府汇报</option><option value="biz">商业计划</option><option value="medical">医疗健康</option><option value="finance">金融报告</option><option value="tech">AI 科技</option></select><select id="pageCount"><option value="8">8 页</option><option value="10" selected>10 页</option><option value="12">12 页</option></select><select id="languageSelect"><option value="简体中文">简体中文</option><option value="繁體中文">繁體中文</option><option value="English">English</option></select></div><button class="cta" id="generateBtn">生成智能大纲</button></div>
       </section>
-
-      <section class="outline-card glass panel hidden" id="outlinePanel">
-        <div class="section-head">
-          <div><p class="eyebrow">STEP 2 · OUTLINE</p><h2>智能大綱</h2><p>先確認內容結構，再進入模板雲庫。未輸入內容時不展示模板牆。</p></div>
-          <button class="ghost-btn" id="editOutlineBtn">返回修改</button>
-        </div>
-        <div id="outlineList" class="outline-list"></div>
-        <button class="primary-btn" id="goTemplateBtn">下一步：選擇模板</button>
-      </section>
-
-      <section class="template-card glass panel hidden" id="templatePanel">
-        <div class="section-head sticky-head">
-          <div><p class="eyebrow">STEP 3 · TEMPLATE CLOUD</p><h2>選擇模板</h2><p id="templateHint">只展示內部模板雲庫；第三方來源、授權、Credit 只記錄在後台，不直接展示給終端用戶。</p></div>
-          <div class="filters"><select id="styleFilter"><option value="all">全部樣式</option><option value="owned">自有模板</option><option value="licensed">白名單模板</option><option value="medical">醫療</option><option value="business">商務</option><option value="public">政府/公益</option><option value="tech">科技</option></select><button class="ghost-btn" id="backOutlineBtn">返回大綱</button></div>
-        </div>
-        <div class="empty-template hidden" id="emptyTemplates">
-          <h3>還沒有導入真實白名單模板</h3>
-          <p>這裡不再用假色塊充數。請到「模板導入」同時上傳真實模板檔（PPTX/POTX）與真實封面圖，填寫授權類型和 Credit，模板才會出現在前台。</p>
-          <button class="primary-btn" id="openImporterBtn">現在導入模板</button>
-        </div>
-        <div class="template-grid" id="templateGrid"></div>
-      </section>
-
-      <section class="preview-card glass panel hidden" id="previewPanel">
-        <div class="section-head sticky-head">
-          <div><p class="eyebrow">STEP 4 · ONLINE PREVIEW</p><h2>在線預覽</h2><p>若選擇導入模板，封面會直接使用你導入的真實模板封面圖，不再是灰色占位圖。</p></div>
-          <div class="preview-actions"><button class="ghost-btn" id="changeTemplateBtn">換模板</button><button class="primary-btn" id="downloadBtn">下載 PPTX</button></div>
-        </div>
-        <div id="previewStrip" class="preview-strip"></div>
-      </section>
+      <section class="outline-card glass panel hidden" id="outlinePanel"><div class="section-head"><div><p class="eyebrow">STEP 2 · OUTLINE</p><h2>智能大纲</h2></div><button class="ghost-btn" id="editOutlineBtn">返回修改</button></div><div id="outlineList" class="outline-list"></div><button class="primary-btn" id="goTemplateBtn">下一步：选择模板</button></section>
+      <section class="template-card glass panel hidden" id="templatePanel"><div class="section-head sticky-head"><div><p class="eyebrow">STEP 3 · TEMPLATE MARKETPLACE</p><h2>模板页</h2><p>外部模板的登录、下载、付费和授权在原网站完成。本平台不代收费用、不保存第三方账号、不重新分发第三方模板文件。</p></div><div class="filters"><button class="ghost-btn" id="backOutlineBtn">返回大纲</button></div></div><div class="mode-tabs template-tabs"><button class="mode tpl-tab active" data-tab="external"><span>🌐</span><strong>外部模板广场</strong><small>跳转原网站使用</small></button><button class="mode tpl-tab" data-tab="mine"><span>🧩</span><strong>我的真模板库</strong><small>下载自己导入模板</small></button></div><div id="externalTemplateArea"><div class="template-grid" id="externalTemplateGrid"></div></div><div id="myTemplateArea" class="hidden"><div class="empty-template" id="myTemplateEmpty"><h3>尚未导入自己的真实模板</h3><p>请先在外部模板网站下载 PPTX/POTX，或使用自有模板，然后在“模板导入”上传。</p><button class="primary-btn" id="openImporterBtn">现在导入模板</button></div><div class="template-grid" id="myTemplateGrid"></div></div></section>
     </main>
-
-    <nav class="bottom-nav glass">
-      <button class="nav-item active" data-panel="createPanel"><span>✨</span>創建</button>
-      <button class="nav-item" data-panel="templatePanel"><span>▣</span>模板</button>
-      <button class="nav-item" data-panel="member"><span>◆</span>高級版</button>
-      <button class="nav-item" data-panel="admin"><span>＋</span>導入</button>
-      <button class="nav-item" data-panel="account"><span>☺</span>帳戶</button>
-    </nav>
+    <nav class="bottom-nav glass"><button class="nav-item active" data-panel="createPanel"><span>✨</span>创建</button><button class="nav-item" data-panel="templatePanel"><span>▣</span>模板</button><button class="nav-item" data-panel="member"><span>◆</span>高级版</button><button class="nav-item" data-panel="admin"><span>＋</span>导入</button><button class="nav-item" data-panel="account"><span>☺</span>账户</button></nav>
   </div>
 
-  <div class="modal hidden" id="adminModal">
-    <div class="modal-box importer glass">
-      <button class="modal-close" id="closeAdmin">×</button>
-      <p class="eyebrow">ADMIN · REAL TEMPLATE IMPORT</p>
-      <h2>導入真實模板資產與授權記錄</h2>
-      <p class="modal-note">這是給你/管理員用的，不是給終端用戶看的。請只導入自有模板、已授權模板，或允許商用與改編且保留署名的模板。未同時提供真實 PPTX/POTX 與封面圖的模板不會展示。</p>
-      <div class="import-grid">
-        <label>模板名稱<input id="tplName" placeholder="例：醫療培訓專業版" /></label>
-        <label>分類<select id="tplCategory"><option value="medical">醫療</option><option value="business">商務</option><option value="public">政府/公益</option><option value="tech">科技</option><option value="finance">金融</option><option value="education">教育</option></select></label>
-        <label>模板來源類型<select id="tplSource"><option value="owned">Owned 自有模板</option><option value="licensed">Licensed 授權白名單</option><option value="user">User Upload 用戶自帶</option></select></label>
-        <label>授權 / Credit<input id="tplCredit" placeholder="例：CC BY 4.0 / 自有設計 / 已授權" /></label>
-      </div>
-      <label class="file-drop">上傳真實模板檔 PPTX/POTX<input type="file" id="templateFile" accept=".pptx,.potx,application/vnd.openxmlformats-officedocument.presentationml.presentation,application/vnd.openxmlformats-officedocument.presentationml.template" /></label>
-      <label class="file-drop">上傳真實模板封面圖 PNG/JPG/SVG<input type="file" id="coverFile" accept="image/*" /></label>
-      <div class="import-actions"><button class="ghost-btn" id="clearTemplatesBtn">清空本地導入模板</button><button class="primary-btn" id="saveTemplateBtn">保存到本地模板雲庫</button></div>
-      <div id="importPreview" class="import-preview"></div>
-    </div>
-  </div>
-
-  <div class="modal hidden" id="memberModal">
-    <div class="modal-box glass">
-      <button class="modal-close" id="closeMember">×</button>
-      <p class="eyebrow">MEMBERSHIP</p>
-      <h2>下載 PPTX 需要登入 / 會員</h2>
-      <div class="price-grid"><button class="price active"><b>Plus 年費</b><span>HK$469 / 年</span></button><button class="price"><b>月費</b><span>HK$70.9 / 月</span></button><button class="price"><b>終身版</b><span>HK$839</span></button></div>
-      <button class="cta" id="fakePayBtn">模擬開通會員</button>
-    </div>
-  </div>
-
-  <script src="pptxgen.bundle.js"></script>
-  <script src="app.js"></script>
+  <div class="modal hidden" id="adminModal"><div class="modal-box importer glass"><button class="modal-close" id="closeAdmin">×</button><h2>模板导入</h2><p class="modal-note">使用流程：<br/>1. 先从外部模板网站下载 PPTX/POTX，或准备自有模板；<br/>2. 回到本平台上传 PPTX/POTX；<br/>3. 上传封面图 PNG/JPG/SVG；<br/>4. 填写模板名称、分类、来源和 Credit；<br/>5. 保存后会进入“我的真模板库”。</p><div class="import-grid"><label>模板名称<input id="tplName" /></label><label>分类<select id="tplCategory"><option value="medical">医疗</option><option value="business">商务</option><option value="public">政府/公益</option><option value="tech">科技</option></select></label><label>模板来源类型<select id="tplSource"><option value="owned">Owned 自有模板</option><option value="licensed">Licensed 授权白名单</option><option value="user">User Upload 用户自带</option></select></label><label>授权 / Credit<input id="tplCredit" /></label></div><label class="file-drop">上传 PPTX/POTX<input type="file" id="templateFile" accept=".pptx,.potx" /></label><label class="file-drop">上传封面图<input type="file" id="coverFile" accept="image/*" /></label><div class="import-actions"><button class="ghost-btn" id="clearTemplatesBtn">清空本地导入模板</button><button class="primary-btn" id="saveTemplateBtn">保存到我的真模板库</button></div><div id="importPreview" class="import-preview"></div></div></div>
+  <div class="modal hidden" id="memberModal"><div class="modal-box glass"><button class="modal-close" id="closeMember">×</button><p class="eyebrow">MEMBERSHIP</p><h2>下载 PPTX 需要登录 / 会员</h2><div class="price-grid"><button class="price active"><b>Plus 年费</b><span>HK$469 / 年</span></button><button class="price"><b>月费</b><span>HK$70.9 / 月</span></button><button class="price"><b>终身版</b><span>HK$839</span></button></div><button class="cta" id="fakePayBtn">模拟开通会员</button></div></div>
+  <script src="pptxgen.bundle.js"></script><script src="app.js"></script>
 </body>
 </html>
