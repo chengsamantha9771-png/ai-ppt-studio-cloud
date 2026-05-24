@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI PPT Studio Cloud · V17 Real Templates</title>
+  <style>
+    body{margin:0;font-family:system-ui,-apple-system,"Microsoft YaHei",Arial;background:linear-gradient(135deg,#f7f3ff,#edf7ff,#fff8ed);color:#071426}.wrap{width:min(1120px,calc(100% - 28px));margin:24px auto 80px}.top{display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,.86);border:1px solid #fff;border-radius:22px;padding:14px 18px;box-shadow:0 20px 60px rgba(15,23,42,.12);position:sticky;top:10px}.brand{font-weight:900}.sub{font-size:12px;color:#667085;margin-top:4px}.hero{margin-top:22px;background:rgba(255,255,255,.86);border-radius:30px;padding:28px;box-shadow:0 20px 60px rgba(15,23,42,.10)}h1{font-size:44px;line-height:1;margin:0 0 12px}.note{background:#eef4ff;border:1px solid #c7d7fe;color:#1e3a8a;border-radius:16px;padding:12px 14px;margin:16px 0;font-weight:700}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:20px}.card{background:#fff;border:1px solid #e5e7eb;border-radius:22px;overflow:hidden;box-shadow:0 14px 34px rgba(15,23,42,.08)}.card img{width:100%;aspect-ratio:16/9;object-fit:cover;background:#0f172a}.info{padding:15px}.badge{display:inline-block;font-size:11px;font-weight:800;background:#eef4ff;color:#0f4cbd;border-radius:999px;padding:4px 8px;margin:0 6px 8px 0}.btn{display:inline-block;margin-top:10px;background:#071426;color:#fff;text-decoration:none;border-radius:999px;padding:10px 14px;font-weight:900}.empty{background:#fff;border:2px dashed #cbd5e1;border-radius:24px;padding:28px;margin-top:20px}.small{font-size:13px;color:#667085;line-height:1.7}@media(max-width:860px){.grid{grid-template-columns:1fr}h1{font-size:34px}.top{display:block}}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="top">
+      <div><div class="brand">AI PPT Studio Cloud</div><div class="sub">V17 · 真实 PPTX 模板库 · 只读 registry.json · 不显示假模板</div></div>
+      <button onclick="hardRefresh()" class="btn">刷新新版</button>
+    </div>
+    <section class="hero">
+      <h1>真实模板库</h1>
+      <p>这个页面只读取 <b>templates/registry.json</b>。没有真实 PPTX/POTX 进入 registry 时，不显示任何假模板卡片。</p>
+      <div class="note" id="status">正在读取真实模板库...</div>
+      <div id="list" class="grid"></div>
+    </section>
+  </main>
+  <script>
+    const list=document.getElementById('list');
+    const status=document.getElementById('status');
+    const esc=s=>String(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+    async function hardRefresh(){try{if('serviceWorker'in navigator){const regs=await navigator.serviceWorker.getRegistrations();await Promise.all(regs.map(r=>r.unregister()));}if(window.caches){const keys=await caches.keys();await Promise.all(keys.map(k=>caches.delete(k)));}}catch(e){} location.href=location.pathname+'?v='+Date.now();}
+    async function load(){
+      try{
+        const r=await fetch('./templates/registry.json?v='+Date.now(),{cache:'no-store'});
+        const data=await r.json();
+        if(!Array.isArray(data)||data.length===0){
+          status.textContent='真实模板库当前还是空的。请先运行 GitHub Actions：Collect real PPTX templates。';
+          list.className='';
+          list.innerHTML='<div class="empty"><h2>没有真实模板，不显示假模板</h2><p>这不是错误：V17 已经停止显示前端画出来的假卡片。下一步需要让采集器跑完，把真实 PPTX 写入 templates/registry.json。</p><p class="small">路径：GitHub 仓库 → Actions → Collect real PPTX templates → Run workflow。</p></div>';
+          return;
+        }
+        status.textContent='已读取到 '+data.length+' 个真实 PPTX/POTX 模板。';
+        list.className='grid';
+        list.innerHTML=data.map(t=>'<article class="card"><img src="'+esc(t.cover_image)+'" alt="cover"><div class="info"><span class="badge">真实PPTX</span><span class="badge">'+esc(t.category||'general')+'</span><span class="badge">'+esc(t.license_type||'license')+'</span><h3>'+esc(t.template_name)+'</h3><p class="small">来源：'+esc(t.source_repo||t.source_url||'public')+'</p><a class="btn" href="'+esc(t.original_file)+'">打开真实模板文件</a></div></article>').join('');
+      }catch(e){status.textContent='读取 registry.json 失败：'+e.message;}
+    }
+    load();
+  </script>
+</body>
+</html>
