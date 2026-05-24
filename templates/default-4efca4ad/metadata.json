@@ -1,0 +1,18 @@
+{
+  "template_id": "default-4efca4ad",
+  "template_name": "default",
+  "category": "general",
+  "source_type": "public_open_source",
+  "license_type": "apache-2.0",
+  "source_url": "https://raw.githubusercontent.com/m3dev/pptx-template/master/.eggs/python_pptx-0.6.6-py3.6.egg/pptx/templates/default.pptx",
+  "source_repo": "m3dev/pptx-template",
+  "original_file": "./templates/default-4efca4ad/original.pptx",
+  "cover_image": "./templates/default-4efca4ad/cover.svg",
+  "premium": false,
+  "credit_required": false,
+  "tags": [
+    "general",
+    "apache-2.0",
+    "real-pptx"
+  ]
+}

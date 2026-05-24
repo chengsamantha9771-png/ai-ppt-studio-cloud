@@ -1,0 +1,18 @@
+{
+  "template_id": "chartaxis-fe9a4572",
+  "template_name": "ChartAxis",
+  "category": "general",
+  "source_type": "public_open_source",
+  "license_type": "mit",
+  "source_url": "https://raw.githubusercontent.com/singerla/pptx-automizer/main/__tests__/pptx-templates/ChartAxis.pptx",
+  "source_repo": "singerla/pptx-automizer",
+  "original_file": "./templates/chartaxis-fe9a4572/original.pptx",
+  "cover_image": "./templates/chartaxis-fe9a4572/cover.svg",
+  "premium": false,
+  "credit_required": false,
+  "tags": [
+    "general",
+    "mit",
+    "real-pptx"
+  ]
+}

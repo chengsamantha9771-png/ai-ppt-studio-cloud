@@ -1,1 +1,218 @@
-[]
+[
+  {
+    "template_id": "chartaxis-fe9a4572",
+    "template_name": "ChartAxis",
+    "category": "general",
+    "source_type": "public_open_source",
+    "license_type": "mit",
+    "source_url": "https://raw.githubusercontent.com/singerla/pptx-automizer/main/__tests__/pptx-templates/ChartAxis.pptx",
+    "source_repo": "singerla/pptx-automizer",
+    "original_file": "./templates/chartaxis-fe9a4572/original.pptx",
+    "cover_image": "./templates/chartaxis-fe9a4572/cover.svg",
+    "premium": false,
+    "credit_required": false,
+    "tags": [
+      "general",
+      "mit",
+      "real-pptx"
+    ]
+  },
+  {
+    "template_id": "chartbarsstacked-59a6252d",
+    "template_name": "ChartBarsStacked",
+    "category": "general",
+    "source_type": "public_open_source",
+    "license_type": "mit",
+    "source_url": "https://raw.githubusercontent.com/singerla/pptx-automizer/main/__tests__/pptx-templates/ChartBarsStacked.pptx",
+    "source_repo": "singerla/pptx-automizer",
+    "original_file": "./templates/chartbarsstacked-59a6252d/original.pptx",
+    "cover_image": "./templates/chartbarsstacked-59a6252d/cover.svg",
+    "premium": false,
+    "credit_required": false,
+    "tags": [
+      "general",
+      "mit",
+      "real-pptx"
+    ]
+  },
+  {
+    "template_id": "chartbarsstackedfmt-9ed5736e",
+    "template_name": "ChartBarsStackedFmt",
+    "category": "general",
+    "source_type": "public_open_source",
+    "license_type": "mit",
+    "source_url": "https://raw.githubusercontent.com/singerla/pptx-automizer/main/__tests__/pptx-templates/ChartBarsStackedFmt.pptx",
+    "source_repo": "singerla/pptx-automizer",
+    "original_file": "./templates/chartbarsstackedfmt-9ed5736e/original.pptx",
+    "cover_image": "./templates/chartbarsstackedfmt-9ed5736e/cover.svg",
+    "premium": false,
+    "credit_required": false,
+    "tags": [
+      "general",
+      "mit",
+      "real-pptx"
+    ]
+  },
+  {
+    "template_id": "chartbarsstackedlabels-068560ba",
+    "template_name": "ChartBarsStackedLabels",
+    "category": "general",
+    "source_type": "public_open_source",
+    "license_type": "mit",
+    "source_url": "https://raw.githubusercontent.com/singerla/pptx-automizer/main/__tests__/pptx-templates/ChartBarsStackedLabels.pptx",
+    "source_repo": "singerla/pptx-automizer",
+    "original_file": "./templates/chartbarsstackedlabels-068560ba/original.pptx",
+    "cover_image": "./templates/chartbarsstackedlabels-068560ba/cover.svg",
+    "premium": false,
+    "credit_required": false,
+    "tags": [
+      "general",
+      "mit",
+      "real-pptx"
+    ]
+  },
+  {
+    "template_id": "default-4efca4ad",
+    "template_name": "default",
+    "category": "general",
+    "source_type": "public_open_source",
+    "license_type": "apache-2.0",
+    "source_url": "https://raw.githubusercontent.com/m3dev/pptx-template/master/.eggs/python_pptx-0.6.6-py3.6.egg/pptx/templates/default.pptx",
+    "source_repo": "m3dev/pptx-template",
+    "original_file": "./templates/default-4efca4ad/original.pptx",
+    "cover_image": "./templates/default-4efca4ad/cover.svg",
+    "premium": false,
+    "credit_required": false,
+    "tags": [
+      "general",
+      "apache-2.0",
+      "real-pptx"
+    ]
+  },
+  {
+    "template_id": "default-ce0c2119",
+    "template_name": "default",
+    "category": "general",
+    "source_type": "public_open_source",
+    "license_type": "apache-2.0",
+    "source_url": "https://raw.githubusercontent.com/m3dev/pptx-template/master/.eggs/python_pptx-0.6.6-py2.7.egg/pptx/templates/default.pptx",
+    "source_repo": "m3dev/pptx-template",
+    "original_file": "./templates/default-ce0c2119/original.pptx",
+    "cover_image": "./templates/default-ce0c2119/cover.svg",
+    "premium": false,
+    "credit_required": false,
+    "tags": [
+      "general",
+      "apache-2.0",
+      "real-pptx"
+    ]
+  },
+  {
+    "template_id": "in-6b897692",
+    "template_name": "in",
+    "category": "general",
+    "source_type": "public_open_source",
+    "license_type": "apache-2.0",
+    "source_url": "https://raw.githubusercontent.com/m3dev/pptx-template/master/test/data/in.pptx",
+    "source_repo": "m3dev/pptx-template",
+    "original_file": "./templates/in-6b897692/original.pptx",
+    "cover_image": "./templates/in-6b897692/cover.svg",
+    "premium": false,
+    "credit_required": false,
+    "tags": [
+      "general",
+      "apache-2.0",
+      "real-pptx"
+    ]
+  },
+  {
+    "template_id": "inner-chapter-dc505881",
+    "template_name": "inner chapter",
+    "category": "general",
+    "source_type": "public_open_source",
+    "license_type": "mit",
+    "source_url": "https://raw.githubusercontent.com/tristan-mcinnis/pptx-from-layouts-skill/main/templates/inner-chapter.pptx",
+    "source_repo": "tristan-mcinnis/pptx-from-layouts-skill",
+    "original_file": "./templates/inner-chapter-dc505881/original.pptx",
+    "cover_image": "./templates/inner-chapter-dc505881/cover.svg",
+    "premium": false,
+    "credit_required": false,
+    "tags": [
+      "general",
+      "mit",
+      "real-pptx"
+    ]
+  },
+  {
+    "template_id": "output-94beb625",
+    "template_name": "output",
+    "category": "general",
+    "source_type": "public_open_source",
+    "license_type": "mit",
+    "source_url": "https://raw.githubusercontent.com/tristan-mcinnis/pptx-from-layouts-skill/main/examples/q1-strategy/output.pptx",
+    "source_repo": "tristan-mcinnis/pptx-from-layouts-skill",
+    "original_file": "./templates/output-94beb625/original.pptx",
+    "cover_image": "./templates/output-94beb625/cover.svg",
+    "premium": false,
+    "credit_required": false,
+    "tags": [
+      "general",
+      "mit",
+      "real-pptx"
+    ]
+  },
+  {
+    "template_id": "ppt002-c1313e10",
+    "template_name": "PPT002",
+    "category": "general",
+    "source_type": "public_open_source",
+    "license_type": "apache-2.0",
+    "source_url": "https://raw.githubusercontent.com/Allenpandas/BJTU-Slides-Template/main/2021-style/PPT002.pptx",
+    "source_repo": "Allenpandas/BJTU-Slides-Template",
+    "original_file": "./templates/ppt002-c1313e10/original.pptx",
+    "cover_image": "./templates/ppt002-c1313e10/cover.svg",
+    "premium": false,
+    "credit_required": false,
+    "tags": [
+      "general",
+      "apache-2.0",
+      "real-pptx"
+    ]
+  },
+  {
+    "template_id": "pptx-template-873bf85c",
+    "template_name": "pptx template",
+    "category": "general",
+    "source_type": "public_open_source",
+    "license_type": "apache-2.0",
+    "source_url": "https://raw.githubusercontent.com/m3dev/pptx-template/master/docs/pptx-template.pptx",
+    "source_repo": "m3dev/pptx-template",
+    "original_file": "./templates/pptx-template-873bf85c/original.pptx",
+    "cover_image": "./templates/pptx-template-873bf85c/cover.svg",
+    "premium": false,
+    "credit_required": false,
+    "tags": [
+      "general",
+      "apache-2.0",
+      "real-pptx"
+    ]
+  },
+  {
+    "template_id": "test-presentation-layout-a58a9d6b",
+    "template_name": "test presentation layout",
+    "category": "general",
+    "source_type": "public_open_source",
+    "license_type": "mit",
+    "source_url": "https://raw.githubusercontent.com/kwlo/python-pptx-templater/master/tests/fixtures/test_presentation_layout.pptx",
+    "source_repo": "kwlo/python-pptx-templater",
+    "original_file": "./templates/test-presentation-layout-a58a9d6b/original.pptx",
+    "cover_image": "./templates/test-presentation-layout-a58a9d6b/cover.svg",
+    "premium": false,
+    "credit_required": false,
+    "tags": [
+      "general",
+      "mit",
+      "real-pptx"
+    ]
+  }
+]

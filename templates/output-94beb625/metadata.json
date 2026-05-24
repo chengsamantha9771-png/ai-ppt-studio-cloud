@@ -1,0 +1,18 @@
+{
+  "template_id": "output-94beb625",
+  "template_name": "output",
+  "category": "general",
+  "source_type": "public_open_source",
+  "license_type": "mit",
+  "source_url": "https://raw.githubusercontent.com/tristan-mcinnis/pptx-from-layouts-skill/main/examples/q1-strategy/output.pptx",
+  "source_repo": "tristan-mcinnis/pptx-from-layouts-skill",
+  "original_file": "./templates/output-94beb625/original.pptx",
+  "cover_image": "./templates/output-94beb625/cover.svg",
+  "premium": false,
+  "credit_required": false,
+  "tags": [
+    "general",
+    "mit",
+    "real-pptx"
+  ]
+}

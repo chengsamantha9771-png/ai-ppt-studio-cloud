@@ -1,0 +1,18 @@
+{
+  "template_id": "test-presentation-layout-a58a9d6b",
+  "template_name": "test presentation layout",
+  "category": "general",
+  "source_type": "public_open_source",
+  "license_type": "mit",
+  "source_url": "https://raw.githubusercontent.com/kwlo/python-pptx-templater/master/tests/fixtures/test_presentation_layout.pptx",
+  "source_repo": "kwlo/python-pptx-templater",
+  "original_file": "./templates/test-presentation-layout-a58a9d6b/original.pptx",
+  "cover_image": "./templates/test-presentation-layout-a58a9d6b/cover.svg",
+  "premium": false,
+  "credit_required": false,
+  "tags": [
+    "general",
+    "mit",
+    "real-pptx"
+  ]
+}

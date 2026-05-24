@@ -1,0 +1,18 @@
+{
+  "template_id": "ppt002-c1313e10",
+  "template_name": "PPT002",
+  "category": "general",
+  "source_type": "public_open_source",
+  "license_type": "apache-2.0",
+  "source_url": "https://raw.githubusercontent.com/Allenpandas/BJTU-Slides-Template/main/2021-style/PPT002.pptx",
+  "source_repo": "Allenpandas/BJTU-Slides-Template",
+  "original_file": "./templates/ppt002-c1313e10/original.pptx",
+  "cover_image": "./templates/ppt002-c1313e10/cover.svg",
+  "premium": false,
+  "credit_required": false,
+  "tags": [
+    "general",
+    "apache-2.0",
+    "real-pptx"
+  ]
+}
