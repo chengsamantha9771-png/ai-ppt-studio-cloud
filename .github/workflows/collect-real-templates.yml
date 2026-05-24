@@ -2,6 +2,12 @@ name: Collect real PPTX templates
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'template_sources.json'
+      - 'tools/collect_real_templates.py'
+      - '.github/workflows/collect-real-templates.yml'
   schedule:
     - cron: '0 3 * * 1'
 
