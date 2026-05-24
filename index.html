@@ -2,41 +2,47 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#0b1220" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="Cache-Control" content="no-store" />
-  <title>AI PPT Studio Cloud · V16 Visual Template Studio</title>
-  <link rel="manifest" href="manifest.webmanifest" />
-  <link rel="icon" href="icon.svg" />
-  <link rel="stylesheet" href="styles.css?v=16.0.0" />
+  <title>AI PPT Studio Cloud · V17 Real Templates</title>
+  <style>
+    body{margin:0;font-family:system-ui,-apple-system,"Microsoft YaHei",Arial;background:linear-gradient(135deg,#f7f3ff,#edf7ff,#fff8ed);color:#071426}.wrap{width:min(1120px,calc(100% - 28px));margin:24px auto 80px}.top{display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,.86);border:1px solid #fff;border-radius:22px;padding:14px 18px;box-shadow:0 20px 60px rgba(15,23,42,.12);position:sticky;top:10px}.brand{font-weight:900}.sub{font-size:12px;color:#667085;margin-top:4px}.hero{margin-top:22px;background:rgba(255,255,255,.86);border-radius:30px;padding:28px;box-shadow:0 20px 60px rgba(15,23,42,.10)}h1{font-size:44px;line-height:1;margin:0 0 12px}.note{background:#eef4ff;border:1px solid #c7d7fe;color:#1e3a8a;border-radius:16px;padding:12px 14px;margin:16px 0;font-weight:700}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:20px}.card{background:#fff;border:1px solid #e5e7eb;border-radius:22px;overflow:hidden;box-shadow:0 14px 34px rgba(15,23,42,.08)}.card img{width:100%;aspect-ratio:16/9;object-fit:cover;background:#0f172a}.info{padding:15px}.badge{display:inline-block;font-size:11px;font-weight:800;background:#eef4ff;color:#0f4cbd;border-radius:999px;padding:4px 8px;margin:0 6px 8px 0}.btn{display:inline-block;margin-top:10px;background:#071426;color:#fff;text-decoration:none;border-radius:999px;padding:10px 14px;font-weight:900;border:0;cursor:pointer}.empty{background:#fff;border:2px dashed #cbd5e1;border-radius:24px;padding:28px;margin-top:20px}.small{font-size:13px;color:#667085;line-height:1.7}.steps{background:#fff7ed;border:1px solid #fed7aa;border-radius:18px;padding:14px;margin-top:12px}.steps b{color:#9a3412}@media(max-width:860px){.grid{grid-template-columns:1fr}h1{font-size:34px}.top{display:block}.btn{margin-top:10px}}
+  </style>
 </head>
 <body>
-  <div class="app-shell">
-    <header class="topbar glass">
-      <div class="brand">
-        <div class="brand-mark">P</div>
-        <div>
-          <div class="brand-title">AI PPT Studio Cloud</div>
-          <div class="brand-sub">V16 · 视觉模板馆 / 多版式缩略图 / 改良大纲 / 本站生成 PPTX</div>
-        </div>
-      </div>
-      <div class="top-actions"><button class="ghost-btn" id="refreshAppBtn">刷新新版</button><button class="ghost-btn" id="adminBtn">模板导入</button><button class="ghost-btn" id="loginBtn">登入</button><button class="primary-btn small" id="memberBtn">升级会员</button></div>
-    </header>
-    <main class="main">
-      <section class="hero-card glass panel" id="createPanel">
-        <div class="hero-grid"><div class="hero-copy"><p class="eyebrow">AI ONE-CLICK PPT GENERATION</p><h1>先生成专业大纲，<br/>再套用视觉模板。</h1><p class="lead">V16 改成视觉模板馆：每个模板都有不同构图，不再是单纯换颜色。大纲也按输入内容和场景重写，不再十页同一句。</p><div class="status-row"><span>✅ 多版式模板缩略图</span><span>✅ 不跳第三方网站</span><span>✅ 大纲场景识别</span><span>✅ 本站生成 PPTX</span></div></div><div class="workflow-card"><div class="step active"><b>1</b><span>输入主题 / 粘贴文档</span></div><div class="step"><b>2</b><span>生成可汇报的大纲</span></div><div class="step"><b>3</b><span>选择视觉模板</span></div><div class="step"><b>4</b><span>预览 / 会员下载 PPTX</span></div></div></div>
-        <div class="mode-tabs"><button class="mode active" data-mode="prompt"><span>✨</span><strong>使用 AI 创建</strong><small>输入主题，生成专业结构</small></button><button class="mode" data-mode="doc"><span>📄</span><strong>导入文档</strong><small>贴 Word / PDF / TXT 文本</small></button><button class="mode" data-mode="web"><span>🔗</span><strong>网页 / Drive</strong><small>后续接云端解析</small></button></div>
-        <div class="input-studio"><div class="input-row"><label>简报主题 / 长文内容</label><span id="charCount">0 字</span></div><textarea id="topicInput" placeholder="例如：我想做一个AI PPT小程序，用户输入内容后自动生成大纲、选择模板、预览并下载PPTX。不要跳到第三方网站，付费要在我的平台完成。"></textarea><div class="settings-row"><label>场景<select id="sceneSelect"><option value="product">产品发布</option><option value="public">公益项目</option><option value="gov">政府汇报</option><option value="biz">商业计划</option><option value="medical">医疗健康</option><option value="finance">金融报告</option><option value="tech">AI 科技</option><option value="education">教育课件</option></select></label><label>页数<select id="pageCount"><option value="8">8 页</option><option value="10" selected>10 页</option><option value="12">12 页</option><option value="15">15 页</option></select></label><label>语言<select id="languageSelect"><option value="简体中文">简体中文</option><option value="繁體中文">繁體中文</option><option value="English">English</option></select></label></div><button class="cta" id="generateBtn">生成专业 PPT 大纲</button></div>
-      </section>
-      <section class="outline-card glass panel hidden" id="outlinePanel"><div class="section-head"><div><p class="eyebrow">STEP 2 · OUTLINE</p><h2>智能大纲</h2><p>每页都有不同定位、不同表达、不同讲法，不再把同一段提示词复制十次。</p></div><button class="ghost-btn" id="editOutlineBtn">返回修改</button></div><div id="outlineSummary" class="summary-box"></div><div id="outlineList" class="outline-list"></div><div class="footer-actions"><button class="primary-btn" id="goTemplateBtn">下一步：选择模板</button></div></section>
-      <section class="template-card glass panel hidden" id="templatePanel"><div class="section-head sticky-head"><div><p class="eyebrow">STEP 3 · VISUAL TEMPLATE STUDIO</p><h2>视觉模板馆</h2><p>这里展示的是本站内置视觉版式，不是第三方跳转。演示版可生成 PPTX；正式版可替换成你的授权真实模板库。</p></div><div class="filters"><input id="templateSearch" placeholder="搜索：医疗 / 商业 / 教育 / AI…" /><select id="categoryFilter"><option value="all">全部分类</option><option value="business">商务/路演</option><option value="medical">医疗健康</option><option value="education">教育课件</option><option value="public">政府/公益</option><option value="tech">AI 科技</option><option value="data">图表/数据</option><option value="marketing">营销品牌</option><option value="product">产品发布</option><option value="finance">金融报告</option></select><button class="ghost-btn" id="backOutlineBtn">返回大纲</button></div></div><div class="mode-tabs template-tabs"><button class="mode tpl-tab active" data-tab="external"><span>▣</span><strong>视觉模板馆</strong><small>多种版式可选</small></button><button class="mode tpl-tab" data-tab="mine"><span>🧩</span><strong>我的真模板库</strong><small>上传后下载原 PPTX</small></button></div><div id="externalTemplateArea"><div class="template-note">现在模板卡片是不同构图：政府白皮书、黑金路演、医疗实验室、AI玻璃拟态、数据仪表盘、产品 App 展示等。</div><div class="template-grid" id="externalTemplateGrid"></div><div class="empty-template hidden" id="externalTemplateEmpty"><h3>没有找到匹配模板</h3><p>换一个关键词，或把分类改为“全部分类”。</p></div></div><div id="myTemplateArea" class="hidden"><div class="empty-template" id="myTemplateEmpty"><h3>尚未导入自己的真实模板</h3><p>上传你自己拥有、已授权、或客户自带的 PPTX/POTX 模板。</p><button class="primary-btn" id="openImporterBtn">现在导入模板</button></div><div class="template-grid" id="myTemplateGrid"></div></div></section>
-      <section class="preview-card glass panel hidden" id="previewPanel"><div class="section-head sticky-head"><div><p class="eyebrow">STEP 4 · ONLINE PREVIEW</p><h2>结构预览</h2><p id="previewHint">这里预览的是大纲如何变成 PPT 页面结构。</p></div><div class="preview-actions"><button class="ghost-btn" id="changeTemplateBtn">换模板</button><button class="primary-btn" id="downloadBtn">会员下载 PPTX</button></div></div><div id="deliveryChecklist" class="summary-box"></div><div id="previewStrip" class="preview-strip"></div></section>
-    </main>
-    <nav class="bottom-nav glass"><button class="nav-item active" data-panel="createPanel"><span>✨</span>创建</button><button class="nav-item" data-panel="outlinePanel"><span>☰</span>大纲</button><button class="nav-item" data-panel="templatePanel"><span>▣</span>模板</button><button class="nav-item" data-panel="admin"><span>＋</span>导入</button><button class="nav-item" data-panel="member"><span>◆</span>会员</button></nav>
-  </div>
-  <div class="modal hidden" id="adminModal"><div class="modal-box importer glass"><button class="modal-close" id="closeAdmin">×</button><p class="eyebrow">ADMIN · REAL TEMPLATE IMPORT</p><h2>导入真实模板</h2><p class="modal-note">这里只接收你自己拥有、已授权、或客户自带的 PPTX/POTX 文件。保存后进入“我的真模板库”。</p><div class="import-grid"><label>模板名称<input id="tplName" placeholder="例：高端商业路演模板" /></label><label>分类<select id="tplCategory"><option value="business">商务/路演</option><option value="medical">医疗健康</option><option value="public">政府/公益</option><option value="education">教育课件</option><option value="tech">AI 科技</option><option value="data">图表/数据</option></select></label><label>模板来源类型<select id="tplSource"><option value="owned">Owned 自有模板</option><option value="licensed">Licensed 授权白名单</option><option value="user">User Upload 用户自带</option></select></label><label>授权 / Credit<input id="tplCredit" placeholder="例：自有设计 / 已授权 / 客户上传" /></label></div><label class="file-drop">上传 PPTX/POTX 模板文件<input type="file" id="templateFile" accept=".pptx,.potx" /></label><label class="file-drop">上传封面图 PNG/JPG/SVG<input type="file" id="coverFile" accept="image/*" /></label><div class="import-actions"><button class="ghost-btn" id="clearTemplatesBtn">清空本地导入模板</button><button class="primary-btn" id="saveTemplateBtn">保存到我的真模板库</button></div><div id="importPreview" class="import-preview"></div></div></div>
-  <div class="modal hidden" id="memberModal"><div class="modal-box glass"><button class="modal-close" id="closeMember">×</button><p class="eyebrow">MEMBERSHIP</p><h2>下载 PPTX 需要登入 / 会员</h2><p class="modal-note">演示版可以点击“模拟开通会员”，方便你马上测试本站下载流程。正式版可接 Stripe / PayPal / 支付宝香港 / 微信支付香港。</p><div class="price-grid"><button class="price active"><b>Plus 年费</b><span>HK$469 / 年</span></button><button class="price"><b>月费</b><span>HK$70.9 / 月</span></button><button class="price"><b>终身版</b><span>HK$839</span></button></div><button class="cta" id="fakePayBtn">模拟开通会员</button></div></div>
-  <script src="pptxgen.bundle.js?v=16.0.0"></script>
-  <script src="app.js?v=16.0.0"></script>
+  <main class="wrap">
+    <div class="top">
+      <div><div class="brand">AI PPT Studio Cloud</div><div class="sub">V17 · 真实 PPTX 模板库 · 只读 registry.json · 不显示假模板</div></div>
+      <button onclick="hardRefresh()" class="btn">刷新新版</button>
+    </div>
+    <section class="hero">
+      <h1>真实模板库</h1>
+      <p>这个版本只读取 <b>templates/registry.json</b>。没有真实 PPTX/POTX 进入 registry 时，不再显示任何假模板卡片。</p>
+      <div class="note" id="status">正在读取真实模板库...</div>
+      <div id="list" class="grid"></div>
+    </section>
+  </main>
+  <script>
+    const list=document.getElementById('list');
+    const status=document.getElementById('status');
+    const esc=s=>String(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+    async function hardRefresh(){try{if('serviceWorker'in navigator){const regs=await navigator.serviceWorker.getRegistrations();await Promise.all(regs.map(r=>r.unregister()));}if(window.caches){const keys=await caches.keys();await Promise.all(keys.map(k=>caches.delete(k)));}}catch(e){} location.href=location.pathname+'?v='+Date.now();}
+    async function load(){
+      try{
+        const r=await fetch('./templates/registry.json?v='+Date.now(),{cache:'no-store'});
+        const data=await r.json();
+        if(!Array.isArray(data)||data.length===0){
+          status.textContent='真实模板库当前还是空的。请先运行 GitHub Actions：Collect real PPTX templates。';
+          list.className='';
+          list.innerHTML='<div class="empty"><h2>没有真实模板，所以不显示假模板</h2><p>这不是页面坏了：V17 已经停止显示前端画出来的假卡片。下一步需要让采集器跑完，把真实 PPTX 写入 templates/registry.json。</p><div class="steps"><b>下一步：</b>GitHub 仓库 → Actions → Collect real PPTX templates → Run workflow。</div><p class="small">如果采集后仍为空，说明公开源没找到合规 PPTX，需要继续加合法直接来源。</p></div>';
+          return;
+        }
+        status.textContent='已读取到 '+data.length+' 个真实 PPTX/POTX 模板。';
+        list.className='grid';
+        list.innerHTML=data.map(t=>'<article class="card"><img src="'+esc(t.cover_image)+'" alt="cover"><div class="info"><span class="badge">真实PPTX</span><span class="badge">'+esc(t.category||'general')+'</span><span class="badge">'+esc(t.license_type||'license')+'</span><h3>'+esc(t.template_name)+'</h3><p class="small">来源：'+esc(t.source_repo||t.source_url||'public')+'</p><a class="btn" href="'+esc(t.original_file)+'">打开真实模板文件</a></div></article>').join('');
+      }catch(e){status.textContent='读取 registry.json 失败：'+e.message;}
+    }
+    load();
+  </script>
 </body>
 </html>
