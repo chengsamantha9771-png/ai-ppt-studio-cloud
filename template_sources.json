@@ -1,0 +1,29 @@
+{
+  "version": "v17-real-template-collector",
+  "max_templates": 12,
+  "max_file_mb": 12,
+  "allowed_license_keys": [
+    "mit",
+    "apache-2.0",
+    "bsd-2-clause",
+    "bsd-3-clause",
+    "cc0-1.0",
+    "cc-by-4.0",
+    "cc-by-sa-4.0",
+    "unlicense"
+  ],
+  "repository_queries": [
+    "powerpoint template",
+    "pptx template",
+    "presentation template pptx",
+    "slide template powerpoint",
+    "ppt template",
+    "corporate presentation template"
+  ],
+  "direct_sources": [],
+  "notes": [
+    "V17 only collects public repositories with allowed open-source/license metadata.",
+    "It does not bypass login, payment, robots.txt, or licensing restrictions.",
+    "Add your own authorized direct PPTX/POTX URLs to direct_sources when available."
+  ]
+}
