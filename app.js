@@ -1,9 +1,6 @@
 const $ = (s)=>document.querySelector(s);
 const $$ = (s)=>Array.from(document.querySelectorAll(s));
-const state = { outline: [], selectedTemplate:null, isMember:false, lastCoverData:null, lastTemplateFile:null };
-
-
-const builtInTemplates = [];
+const state = { outline: [], selectedTemplate:null, isMember:false, lastCoverData:null, lastTemplateFile:null, registryTemplates:[] };
 
 
 function escapeXml(s=''){return String(s).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&apos;','"':'&quot;'}[c]));}
@@ -14,7 +11,20 @@ function setImportedTemplates(arr){localStorage.setItem('realTemplateCloud',JSON
 function isRealTemplate(t){
  return Boolean(t && t.coverData && t.templateData && (t.templateExt==='pptx' || t.templateExt==='potx'));
 }
-function allTemplates(){return [...getImportedTemplates(), ...builtInTemplates].filter(isRealTemplate);}
+function normalizeRegistryTemplate(raw){
+ if(!raw || typeof raw!=='object') return null;
+ const id=raw.template_id||raw.id;
+ const name=raw.template_name||raw.name;
+ const cover=raw.cover_image;
+ const fileUrl=raw.template_file||raw.pptx_file||raw.original_file;
+ if(!id || !name || !cover || !fileUrl) return null;
+ return {id:String(id),name:String(name),category:raw.category||'business',style:raw.style||'',coverData:String(cover),templateUrl:String(fileUrl),creditRequired:Boolean(raw.credit_required),credit:raw.credit||'',source:raw.source_type||'licensed',licenseType:raw.license_type||'',desc:raw.style||raw.license_type||'真實模板封面 / 授權記錄已保存。',registry:true};
+}
+function allTemplates(){
+ const registry=state.registryTemplates.filter(t=>Boolean(t&&t.coverData));
+ const imported=getImportedTemplates().filter(isRealTemplate);
+ return [...registry,...imported];
+}
 
 function svgData(w,h,body){return 'data:image/svg+xml;charset=UTF-8,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}"><defs><filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="14" stdDeviation="14" flood-color="#0f172a" flood-opacity=".18"/></filter><linearGradient id="neon" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#a855f7"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs>${body}</svg>`)}
 function templateCover(t){
@@ -30,10 +40,21 @@ function templateCover(t){
  return svgData(720,405,body);
 }
 
+function splitLongText(topic){
+ return topic.split(/\n+|[。！？!?；;]+/).map(s=>s.trim()).filter(Boolean);
+}
+
 function buildOutline(){
  const topic=$('#topicInput').value.trim()||'未命名簡報'; const scene=$('#sceneSelect').value; const n=Number($('#pageCount').value);
  const scenes={public:['項目定位與公共價值','現況痛點與政策背景','目標對象與服務場景','核心方案與空間/流程設計','治理機制與監管透明度','實施路徑與階段里程碑','資源配置與成本收益','風險控制與可持續營運','KPI 指標與社會影響','下一步行動'],gov:['匯報背景與政策契合','現況問題與治理需要','總體目標與原則','方案架構與工作機制','跨部門協作路徑','監管與數據透明','階段成果與預期效益','資源需求與風險控制','落地時間表','決策事項'],biz:['市場機會','用戶痛點','產品方案','商業模式','競爭優勢','收入模型','推廣策略','團隊與資源','里程碑','合作/融資需求'],medical:['臨床/服務背景','目標人群','核心服務流程','設備與數據管理','風險與合規','運營配置','成效指標','推廣方案','成本收益','下一步'],finance:['宏觀背景','市場數據','核心觀察','風險因素','策略建議','資產配置','收益假設','情境分析','執行時間表','結論'],tech:['問題場景','AI 解決方案','產品能力','技術架構','使用流程','安全與成本','商業化路徑','示範案例','迭代規劃','下一步']};
- const base=scenes[scene]||scenes.public; state.outline=base.slice(0,n).map((title,i)=>({title, subtitle:`圍繞「${topic}」展開的第 ${i+1} 頁重點說明`, bullets:[`${title}的核心重點`,`與目標受眾相關的價值`,`可以落地執行的行動項`]}));
+ const base=scenes[scene]||scenes.public;
+ const isLong=topic.length>30||/\n|。|！|？|;|；/.test(topic);
+ const theme=topic.slice(0,30);
+ const segments=splitLongText(topic);
+ state.outline=base.slice(0,n).map((title,i)=>{
+  const seg=(segments[i%segments.length]||theme).trim();
+  return {title, subtitle:isLong?`重點 ${i+1}：${short(seg,42)}`:`${theme}｜${title}行動重點`, bullets:[`關鍵焦點：${short(seg,28)}`,`推進任務：${title}的落地路徑`,`交付成果：第 ${i+1} 頁可展示結論`]};
+ });
  renderOutline(); showPanel('outlinePanel');
 }
 function renderOutline(){ $('#outlineList').innerHTML=state.outline.map((it,i)=>`<div class="outline-item"><b>${i+1}. ${it.title}</b><span>${it.subtitle}</span></div>`).join(''); }
@@ -51,8 +72,23 @@ function saveImported(){ const name=$('#tplName').value.trim(); const credit=$('
 function openAdmin(){ $('#adminModal').classList.remove('hidden'); }
 function closeAdmin(){ $('#adminModal').classList.add('hidden'); }
 
-async function downloadPptx(){ if(!state.selectedTemplate) return alert('請先選擇模板'); if(!window.pptxgen) return alert('PPTX 引擎未載入'); if(!state.isMember){ $('#memberModal').classList.remove('hidden'); return; } const tpl=state.selectedTemplate; const topic=$('#topicInput').value.trim()||'AI PPT Studio'; const pptx=new pptxgen(); pptx.layout='LAYOUT_WIDE'; pptx.author='AI PPT Studio Cloud'; const [a,b,c]=tpl.colors||['#071426','#0f4cbd','#ffffff']; for(let i=0;i<state.outline.length;i++){ const item=state.outline[i]; const slide=pptx.addSlide(); slide.background={color:(tpl.visual==='blackgold'?'080808':(tpl.category==='public'?'F7F1E6':'FFFFFF'))}; if(i===0){ try{ slide.addImage({data:templateCover(tpl),x:0,y:0,w:13.333,h:7.5}); slide.addShape(pptx.ShapeType.rect,{x:.55,y:5.75,w:7.2,h:.8,fill:{color:'FFFFFF',transparency:6},line:{color:'FFFFFF',transparency:100},radius:.12}); slide.addText(topic,{x:.75,y:5.95,w:6.9,h:.35,fontFace:'Aptos Display',fontSize:22,bold:true,color:'071426',fit:'shrink'}); }catch{ slide.addText(topic,{x:.8,y:1,w:11.8,h:1.4,fontSize:38,bold:true,color:a.replace('#','')}); } } else { const dark=tpl.visual==='blackgold'; slide.addShape(pptx.ShapeType.rect,{x:0,y:0,w:13.333,h:.35,fill:{color:(dark?b:a).replace('#','')},line:{color:(dark?b:a).replace('#','')}}); slide.addText(item.title,{x:.7,y:.85,w:11.8,h:.6,fontFace:'Aptos Display',fontSize:30,bold:true,color:(dark?'FFFFFF':'071426')}); slide.addText(item.subtitle,{x:.72,y:1.55,w:10.8,h:.38,fontSize:13,color:(dark?'D1D5DB':'667085')}); item.bullets.forEach((txt,idx)=>{ slide.addShape(pptx.ShapeType.roundRect,{x:.9,y:2.25+idx*.85,w:10.8,h:.55,rectRadius:.08,fill:{color:(dark?'1F2937':'F8FAFC')},line:{color:(dark?'374151':'E2E8F0')}}); slide.addText('• '+txt,{x:1.15,y:2.39+idx*.85,w:10.2,h:.2,fontSize:15,bold:true,color:(dark?'FFFFFF':'0F172A')}); }); slide.addText(String(i+1).padStart(2,'0'),{x:11.5,y:6.55,w:1,h:.3,fontSize:14,bold:true,color:(dark?'D4AF37':b.replace('#',''))}); } } const credit=tpl.credit||''; if(credit && tpl.source!=='owned'){ const s=pptx.addSlide(); s.background={color:'FFFFFF'}; s.addText('Credits / 授權說明',{x:.8,y:1,w:11,h:.5,fontSize:28,bold:true,color:'071426'}); s.addText(`Template credit: ${credit}\nSource type: ${tpl.source}\nThis page is automatically retained for attribution/licensing record.`,{x:.85,y:1.9,w:11,h:2,fontSize:16,color:'334155',breakLine:false}); }
- await pptx.writeFile({fileName:`${slug(topic)}-${slug(tpl.name)}.pptx`}); }
+function dataUrlToBlob(dataUrl){
+ const [meta,data]=String(dataUrl||'').split(',');
+ if(!meta||!data) return null;
+ const mime=((meta.match(/data:(.*?);base64/)||[])[1])||'application/octet-stream';
+ const binary=atob(data); const arr=new Uint8Array(binary.length);
+ for(let i=0;i<binary.length;i++) arr[i]=binary.charCodeAt(i);
+ return new Blob([arr],{type:mime});
+}
+function triggerDownload(blob,fileName){
+ const url=URL.createObjectURL(blob); const a=document.createElement('a');
+ a.href=url; a.download=fileName; document.body.appendChild(a); a.click(); a.remove();
+ setTimeout(()=>URL.revokeObjectURL(url),1200);
+}
+async function downloadPptx(){ if(!state.selectedTemplate) return alert('請先選擇模板'); if(!state.isMember){ $('#memberModal').classList.remove('hidden'); return; } const tpl=state.selectedTemplate;
+ if(tpl.templateData&&tpl.templateExt){ const blob=dataUrlToBlob(tpl.templateData); if(!blob) return alert('模板檔資料損壞，請重新導入。'); return triggerDownload(blob,`${slug(tpl.name)}.${tpl.templateExt}`); }
+ if(tpl.templateUrl){ const res=await fetch(tpl.templateUrl,{cache:'no-store'}); if(!res.ok) return alert('模板下載失敗，請稍後再試。'); const blob=await res.blob(); const ext=((tpl.templateUrl.split('.').pop()||'pptx').split(/[?#]/)[0]||'pptx').toLowerCase(); return triggerDownload(blob,`${slug(tpl.name)}.${ext}`); }
+ return alert('未找到可下載的模板文件。'); }
 
 $('#charCount').oninput=null; $('#topicInput').addEventListener('input',e=>$('#charCount').textContent=e.target.value.length+' 字');
 $('#generateBtn').onclick=buildOutline; $('#editOutlineBtn').onclick=()=>showPanel('createPanel'); $('#goTemplateBtn').onclick=()=>showPanel('templatePanel'); $('#backOutlineBtn').onclick=()=>showPanel('outlinePanel'); $('#changeTemplateBtn').onclick=()=>showPanel('templatePanel'); $('#downloadBtn').onclick=downloadPptx; $('#styleFilter').onchange=renderTemplates;
@@ -62,5 +98,13 @@ $('#templateFile').onchange=(e)=>{ const f=e.target.files[0]; if(!f) return; con
 $('#loginBtn').onclick=()=>alert('已模擬登入。正式版後續接 Supabase / Firebase / 自建後台。'); $('#memberBtn').onclick=()=>$('#memberModal').classList.remove('hidden'); $('#closeMember').onclick=()=>$('#memberModal').classList.add('hidden'); $('#fakePayBtn').onclick=()=>{state.isMember=true; $('#memberModal').classList.add('hidden'); alert('已模擬開通會員，現在可以下載 PPTX。')};
 $$('.mode').forEach(b=>b.onclick=()=>{$$('.mode').forEach(x=>x.classList.remove('active')); b.classList.add('active')});
 $$('.nav-item').forEach(b=>b.onclick=()=>{ const p=b.dataset.panel; if(p==='member') return $('#memberModal').classList.remove('hidden'); if(p==='admin') return openAdmin(); if(p==='templatePanel' && state.outline.length===0) return alert('請先輸入內容並生成大綱，再選擇模板。'); if(p==='account') return alert('帳戶頁後續接真實登入。'); showPanel(p); });
-renderTemplates();
+async function loadRegistryTemplates(){
+ try{
+  const res=await fetch(`./templates/registry.json?v=${Date.now()}`,{cache:'no-store'});
+  if(!res.ok) throw new Error('registry not found');
+  const data=await res.json();
+  state.registryTemplates=Array.isArray(data)?data.map(normalizeRegistryTemplate).filter(Boolean):[];
+ }catch{ state.registryTemplates=[]; }
+}
+loadRegistryTemplates().finally(()=>renderTemplates());
 if('serviceWorker' in navigator){ navigator.serviceWorker.register('./sw.js').catch(()=>{}); }
