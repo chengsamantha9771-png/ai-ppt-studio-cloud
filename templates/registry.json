@@ -1,5 +1,77 @@
 [
   {
+    "template_id": "attention-is-all-you-need-narrated-68f8722f",
+    "template_name": "attention is all you need narrated",
+    "category": "general",
+    "source_type": "public_open_source",
+    "license_type": "mit",
+    "source_url": "https://raw.githubusercontent.com/hugohe3/ppt-master/main/examples/ppt169_attention_is_all_you_need/exports/attention_is_all_you_need_narrated.pptx",
+    "source_repo": "hugohe3/ppt-master",
+    "original_file": "./templates/attention-is-all-you-need-narrated-68f8722f/original.pptx",
+    "cover_image": "./templates/attention-is-all-you-need-narrated-68f8722f/cover.svg",
+    "premium": false,
+    "credit_required": false,
+    "tags": [
+      "general",
+      "mit",
+      "real-pptx"
+    ]
+  },
+  {
+    "template_id": "brutalist-ai-newspaper-2026-be60327b",
+    "template_name": "brutalist ai newspaper 2026",
+    "category": "general",
+    "source_type": "public_open_source",
+    "license_type": "mit",
+    "source_url": "https://raw.githubusercontent.com/hugohe3/ppt-master/main/examples/ppt169_brutalist_ai_newspaper_2026/exports/brutalist_ai_newspaper_2026.pptx",
+    "source_repo": "hugohe3/ppt-master",
+    "original_file": "./templates/brutalist-ai-newspaper-2026-be60327b/original.pptx",
+    "cover_image": "./templates/brutalist-ai-newspaper-2026-be60327b/cover.svg",
+    "premium": false,
+    "credit_required": false,
+    "tags": [
+      "general",
+      "mit",
+      "real-pptx"
+    ]
+  },
+  {
+    "template_id": "building-effective-agents-7afe9f19",
+    "template_name": "building effective agents",
+    "category": "general",
+    "source_type": "public_open_source",
+    "license_type": "mit",
+    "source_url": "https://raw.githubusercontent.com/hugohe3/ppt-master/main/examples/ppt169_building_effective_agents/exports/building_effective_agents.pptx",
+    "source_repo": "hugohe3/ppt-master",
+    "original_file": "./templates/building-effective-agents-7afe9f19/original.pptx",
+    "cover_image": "./templates/building-effective-agents-7afe9f19/cover.svg",
+    "premium": false,
+    "credit_required": false,
+    "tags": [
+      "general",
+      "mit",
+      "real-pptx"
+    ]
+  },
+  {
+    "template_id": "cangzhuo-8018cf0d",
+    "template_name": "cangzhuo",
+    "category": "general",
+    "source_type": "public_open_source",
+    "license_type": "mit",
+    "source_url": "https://raw.githubusercontent.com/hugohe3/ppt-master/main/examples/ppt169_cangzhuo/exports/cangzhuo.pptx",
+    "source_repo": "hugohe3/ppt-master",
+    "original_file": "./templates/cangzhuo-8018cf0d/original.pptx",
+    "cover_image": "./templates/cangzhuo-8018cf0d/cover.svg",
+    "premium": false,
+    "credit_required": false,
+    "tags": [
+      "general",
+      "mit",
+      "real-pptx"
+    ]
+  },
+  {
     "template_id": "chartaxis-fe9a4572",
     "template_name": "ChartAxis",
     "category": "general",
