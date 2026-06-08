@@ -286,5 +286,23 @@
       "mit",
       "real-pptx"
     ]
+  },
+  {
+    "template_id": "zhengzhou-university-midterm-blank-template-40225b6e",
+    "template_name": "zhengzhou university midterm blank template",
+    "category": "general",
+    "source_type": "public_open_source",
+    "license_type": "apache-2.0",
+    "source_url": "https://raw.githubusercontent.com/zouchenzhen/thesis-defense-pptx-skill/main/examples/templates/zhengzhou-university-midterm-blank-template.pptx",
+    "source_repo": "zouchenzhen/thesis-defense-pptx-skill",
+    "original_file": "./templates/zhengzhou-university-midterm-blank-template-40225b6e/original.pptx",
+    "cover_image": "./templates/zhengzhou-university-midterm-blank-template-40225b6e/cover.svg",
+    "premium": false,
+    "credit_required": false,
+    "tags": [
+      "general",
+      "apache-2.0",
+      "real-pptx"
+    ]
   }
 ]
