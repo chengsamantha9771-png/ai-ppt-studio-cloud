@@ -1,5 +1,23 @@
 [
   {
+    "template_id": "acme-complex-78f3e6e8",
+    "template_name": "acme complex",
+    "category": "general",
+    "source_type": "public_open_source",
+    "license_type": "mit",
+    "source_url": "https://raw.githubusercontent.com/ferdinandobons/brand-docs/main/tests/fixtures/complex/acme_complex.pptx",
+    "source_repo": "ferdinandobons/brand-docs",
+    "original_file": "./templates/acme-complex-78f3e6e8/original.pptx",
+    "cover_image": "./templates/acme-complex-78f3e6e8/cover.svg",
+    "premium": false,
+    "credit_required": false,
+    "tags": [
+      "general",
+      "mit",
+      "real-pptx"
+    ]
+  },
+  {
     "template_id": "attention-is-all-you-need-narrated-68f8722f",
     "template_name": "attention is all you need narrated",
     "category": "general",
@@ -9,6 +27,24 @@
     "source_repo": "hugohe3/ppt-master",
     "original_file": "./templates/attention-is-all-you-need-narrated-68f8722f/original.pptx",
     "cover_image": "./templates/attention-is-all-you-need-narrated-68f8722f/cover.svg",
+    "premium": false,
+    "credit_required": false,
+    "tags": [
+      "general",
+      "mit",
+      "real-pptx"
+    ]
+  },
+  {
+    "template_id": "branddocs-template-236636d8",
+    "template_name": "branddocs template",
+    "category": "general",
+    "source_type": "public_open_source",
+    "license_type": "mit",
+    "source_url": "https://raw.githubusercontent.com/ferdinandobons/brand-docs/main/examples/templates/branddocs_template.pptx",
+    "source_repo": "ferdinandobons/brand-docs",
+    "original_file": "./templates/branddocs-template-236636d8/original.pptx",
+    "cover_image": "./templates/branddocs-template-236636d8/cover.svg",
     "premium": false,
     "credit_required": false,
     "tags": [
